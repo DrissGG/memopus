@@ -1,0 +1,15 @@
+<div class="container mt-5">
+    <h2>Connexion</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="login" class="form-label">Login</label>
+            <input type="text" id="login" [(ngModel)]="login" class="form-control" name="login" required>
+        </div>
+        <div class="mb-3">
+            <label for="pwd" class="form-label">Mot de passe</label>
+            <input type="password" id="pwd" [ngModel]="pwd" class="form-control" name="pwd" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Se connecter</button>
+        <div *ngIf="error" class="text-danger mt-3">{{ error }}</div>
+    </form>
+</div>

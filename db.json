@@ -1,0 +1,130 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "login": "y",
+            "pwd": "y"
+        }
+    ],
+    "tags": [
+        {
+            "id": 1,
+            "label": "Informatique"
+        },
+        {
+            "id": 2,
+            "label": "Mathématiques"
+        },
+        {
+            "id": 3,
+            "label": "Géographie"
+        },
+        {
+            "id": 4,
+            "label": "Culture Générale"
+        },
+        {
+            "id": 5,
+            "label": "Science"
+        }
+    ],
+    "columns": [
+        {
+            "id": 1,
+            "label": "To Do",
+            "order": 1
+        },
+        {
+            "id": 2,
+            "label": "In Progress",
+            "order": 2
+        },
+        {
+            "id": 3,
+            "label": "Done",
+            "order": 3
+        }
+    ],
+    "cards": [
+        {
+            "id": 1,
+            "question": "Quelle est la couleur du ciel par temps clair ?",
+            "answer": "Bleu",
+            "description": "Couleur du ciel pendant une journée ensoleillée.",
+            "tag": 1,
+            "column": 1
+        },
+        {
+            "id": 2,
+            "question": "Combien de côtés a un triangle ?",
+            "answer": "Trois",
+            "description": "Un triangle a trois côtés.",
+            "tag": 2,
+            "column": 1
+        },
+        {
+            "id": 3,
+            "question": "Quel est le plus grand océan sur Terre ?",
+            "answer": "Pacifique",
+            "description": "Océan le plus étendu.",
+            "tag": 3,
+            "column": 2
+        },
+        {
+            "id": 4,
+            "question": "Quel est l’élément chimique avec le symbole 'O' ?",
+            "answer": "Oxygène",
+            "description": "Gaz essentiel à la respiration.",
+            "tag": 5,
+            "column": 2
+        },
+        {
+            "id": 5,
+            "question": "Quelle est la capitale de la France ?",
+            "answer": "Paris",
+            "description": "Ville lumière et capitale française.",
+            "tag": 3,
+            "column": 3
+        },
+        {
+            "id": 6,
+            "question": "Quel est l’animal qui dit 'meuh' ?",
+            "answer": "Vache",
+            "description": "Animal d’élevage connu pour son lait.",
+            "tag": 4,
+            "column": 3
+        },
+        {
+            "id": 7,
+            "question": "Quel est le nombre de continents sur Terre ?",
+            "answer": "Sept",
+            "description": "Nombre de grands continents.",
+            "tag": 3,
+            "column": 1
+        },
+        {
+            "id": 8,
+            "question": "Quelle est la langue officielle du Japon ?",
+            "answer": "Japonais",
+            "description": "Langue parlée au Japon.",
+            "tag": 4,
+            "column": 1
+        },
+        {
+            "id": 9,
+            "question": "Quel fruit est connu pour sa couleur rouge et ses graines à l'intérieur ?",
+            "answer": "Fraise",
+            "description": "Fruit rouge avec des petites graines.",
+            "tag": 4,
+            "column": 2
+        },
+        {
+            "id": 10,
+            "question": "Quel est l’organe principal de la respiration chez l'homme ?",
+            "answer": "Poumons",
+            "description": "Organe essentiel pour respirer.",
+            "tag": 5,
+            "column": 2
+        }
+    ]
+}

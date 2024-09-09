@@ -1,0 +1,32 @@
+<div class="container mt-5">
+    <h2>Tableau de bord</h2>
+
+    <!-- Liste des tags comme filtres -->
+    <div class="mb-3">
+        <button *ngFor="let tag of tags" (click)="filterByTag(tag.id)" [class.btn-primary]="selectedTag === tag.id"
+            [class.btn-outline-primary]="selectedTag !== tag.id" class="btn me-2">
+            {{ tag.label }}
+        </button>
+        <button (click)="filterByTag(null)" [class.btn-primary]="selectedTag === null"
+            [class.btn-outline-primary]="selectedTag !== null" class="btn btn-outline-secondary">
+            Tout afficher
+        </button>
+    </div>
+
+    <!-- Liste des cartes -->
+    <div class="row">
+        <div class="col" *ngFor="let card of cards">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ card.question }}</h5>
+                    <p class="card-text" (click)="toggleAnswer(card)">
+                        {{ card.showAnswer ? card.answer : 'Afficher la réponse' }}
+                    </p>
+                    <button class="btn btn-secondary" (click)="moveCard(card)">
+                        Changer de colonne
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
