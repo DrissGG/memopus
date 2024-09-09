@@ -19,5 +19,8 @@ export class CardService {
         return this.http.get<any[]>(this.apiUrl);
     }
 
-    // Ajoutez ici les méthodes pour créer, modifier, supprimer les cartes
+    // Nouvelle méthode pour ajouter une carte
+    addCard(card: any): Observable<any> {
+        return this.http.post<any>(this.apiUrl, card);
+    }
 }

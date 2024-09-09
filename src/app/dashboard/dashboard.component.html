@@ -1,30 +1,107 @@
 <div class="container mt-5">
     <h2>Tableau de bord</h2>
 
-    <!-- Liste des tags comme filtres -->
-    <div class="mb-3">
+    <!-- Liste des tags avec bouton pour ajouter un nouveau tag -->
+    <div class="mb-3 d-flex align-items-center">
         <button *ngFor="let tag of tags" (click)="filterByTag(tag.id)" [class.btn-primary]="selectedTag === tag.id"
-            [class.btn-outline-primary]="selectedTag !== tag.id" class="btn me-2">
+            [class.btn-outline-primary]="selectedTag !== tag.id" class="btn me-2 btn-tag">
             {{ tag.label }}
         </button>
-        <button (click)="filterByTag(null)" [class.btn-primary]="selectedTag === null"
-            [class.btn-outline-primary]="selectedTag !== null" class="btn btn-outline-secondary">
-            Tout afficher
+        <button class="btn btn-outline-success btn-tag" (click)="openAddTagModal()">
+            <i class="bi bi-plus"></i> Ajouter un tag
         </button>
     </div>
 
-    <!-- Liste des cartes -->
-    <div class="row">
-        <div class="col" *ngFor="let card of cards">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">{{ card.question }}</h5>
-                    <p class="card-text" (click)="toggleAnswer(card)">
-                        {{ card.showAnswer ? card.answer : 'Afficher la réponse' }}
-                    </p>
-                    <button class="btn btn-secondary" (click)="moveCard(card)">
-                        Changer de colonne
+    <!-- Modal pour ajouter un nouveau tag -->
+    <div class="modal fade" [ngClass]="{'show d-block': isModalOpen}" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajouter un nouveau tag</h5>
+                    <button type="button" class="close" (click)="closeAddTagModal()">
+                        <span aria-hidden="true">&times;</span>
                     </button>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="addTag()">
+                        <div class="mb-3">
+                            <label for="tagLabel" class="form-label">Nom du tag</label>
+                            <input type="text" class="form-control" id="tagLabel" [(ngModel)]="newTagLabel"
+                                name="tagLabel" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Liste des colonnes avec cartes -->
+    <div class="row">
+        <div class="col-md-4" *ngFor="let column of columns">
+            <div class="d-flex align-items-center mb-2">
+                <h3 class="me-2">{{ column.label }}</h3>
+                <!-- Icône pour ajouter une nouvelle carte -->
+                <button class="btn btn-outline-success btn-sm" (click)="openAddCardModal(column.id)">
+                    <i class="bi bi-plus-circle"></i>
+                </button>
+            </div>
+
+            <div class="card-columns">
+                <div class="card" *ngFor="let card of getCardsByColumn(column.id)">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ card.question }}</h5>
+
+                        <!-- Bouton pour afficher la réponse -->
+                        <button class="btn btn-success mb-2" (click)="toggleAnswer(card)">
+                            {{ card.showAnswer ? card.answer : 'Afficher la réponse' }}
+                        </button>
+
+                        <input type="text" class="form-control mb-2" [(ngModel)]="userAnswers[card.id]"
+                            placeholder="Proposez une réponse" />
+                        <button class="btn btn-primary" (click)="submitAnswer(card)">
+                            Proposer une réponse
+                        </button>
+
+                        <!-- Flèches pour déplacer la carte -->
+                        <div class="d-flex justify-content-between mt-2">
+                            <button class="btn btn-secondary" (click)="moveCardLeft(card)">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <button class="btn btn-secondary" (click)="moveCardRight(card)">
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour ajouter une nouvelle carte -->
+    <div class="modal fade" [ngClass]="{'show d-block': isAddCardModalOpen}" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajouter une nouvelle carte</h5>
+                    <button type="button" class="close" (click)="closeAddCardModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="addCard()">
+                        <div class="mb-3">
+                            <label for="cardQuestion" class="form-label">Question</label>
+                            <input type="text" class="form-control" id="cardQuestion" [(ngModel)]="newCardQuestion"
+                                name="cardQuestion" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cardAnswer" class="form-label">Réponse</label>
+                            <input type="text" class="form-control" id="cardAnswer" [(ngModel)]="newCardAnswer"
+                                name="cardAnswer" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ajouter la carte</button>
+                    </form>
                 </div>
             </div>
         </div>

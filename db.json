@@ -26,6 +26,18 @@
         {
             "id": 5,
             "label": "Science"
+        },
+        {
+            "id": "f9d8",
+            "label": "Chimie"
+        },
+        {
+            "id": "381d",
+            "label": "Economie"
+        },
+        {
+            "id": "e938",
+            "label": "Histoire"
         }
     ],
     "columns": [
@@ -125,6 +137,34 @@
             "description": "Organe essentiel pour respirer.",
             "tag": 5,
             "column": 2
+        },
+        {
+            "id": "70ab",
+            "question": "Combien de continents y a-t-il?",
+            "answer": "7",
+            "column": 1,
+            "tag": 3
+        },
+        {
+            "id": 11,
+            "question": "Quel est le langage de programmation principalement utilisé pour le développement web côté client?",
+            "answer": "JavaScript",
+            "column": 1,
+            "tag": 1
+        },
+        {
+            "id": 12,
+            "question": "Quelle est la structure de données de base utilisée pour stocker des paires clé-valeur?",
+            "answer": "Table de hachage",
+            "column": 2,
+            "tag": 1
+        },
+        {
+            "id": 13,
+            "question": "Quel est le protocole principal utilisé pour transférer des pages web?",
+            "answer": "HTTP",
+            "column": 3,
+            "tag": 1
         }
     ]
 }
