@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
   newCardQuestion: string = ''; // Stocke la question de la nouvelle carte
   newCardAnswer: string = ''; // Stocke la réponse de la nouvelle carte
   currentColumnId: number | null = null; // Stocke l'ID de la colonne où la carte sera ajoutée
+  newCardTagId: number | null = null; // Tag sélectionné pour la nouvelle carte
 
 
 
@@ -125,16 +126,22 @@ export class DashboardComponent implements OnInit {
     this.newCardAnswer = ''; // Réinitialise la réponse de la carte
   }
 
+  // Ajoute une nouvelle carte
   addCard() {
-    if (this.newCardQuestion.trim() && this.newCardAnswer.trim()) {
+    if (this.newCardQuestion.trim() && this.newCardAnswer.trim() && this.newCardTagId !== null) {
       const newCard = {
         question: this.newCardQuestion,
         answer: this.newCardAnswer,
-        column: this.currentColumnId // Associe la nouvelle carte à la colonne spécifiée
+        column: this.currentColumnId,
+        tag: Number(this.newCardTagId) // Associe le tag sélectionné à la nouvelle carte
       };
+      console.log(newCard);
       this.cardService.addCard(newCard).subscribe((addedCard: any) => {
         this.cards.push(addedCard); // Ajoute la nouvelle carte à la liste
-        this.closeAddCardModal(); // Ferme le modal après l'ajout
+        this.newCardQuestion = ''; // Réinitialise le champ de question
+        this.newCardAnswer = '';   // Réinitialise le champ de réponse
+        this.newCardTagId = null;  // Réinitialise le champ de tag
+        this.closeAddCardModal();  // Ferme le modal après l'ajout
       });
     }
   }

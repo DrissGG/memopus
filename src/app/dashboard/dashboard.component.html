@@ -100,6 +100,13 @@
                             <input type="text" class="form-control" id="cardAnswer" [(ngModel)]="newCardAnswer"
                                 name="cardAnswer" required>
                         </div>
+                        <!-- Sélecteur de tag -->
+                        <div class="mb-3">
+                            <label for="cardTag" class="form-label">Tag</label>
+                            <select class="form-select" id="cardTag" [(ngModel)]="newCardTagId" name="cardTag" required>
+                                <option *ngFor="let tag of tags" [value]="tag.id">{{ tag.label }}</option>
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-primary">Ajouter la carte</button>
                     </form>
                 </div>
