@@ -1,5 +1,11 @@
 <div class="container mt-5">
-    <h2>Tableau de bord</h2>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Tableau de bord</h2>
+        <!-- Bouton de déconnexion -->
+        <button class="btn btn-outline-danger" (click)="logout()">
+            <i class="bi bi-box-arrow-right"></i> Déconnecter
+        </button>
+    </div>
 
     <!-- Liste des tags avec bouton pour ajouter un nouveau tag -->
     <div class="mb-3 d-flex align-items-center">
@@ -18,9 +24,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Ajouter un nouveau tag</h5>
-                    <button type="button" class="close" (click)="closeAddTagModal()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" (click)="closeAddTagModal()"></button>
                 </div>
                 <div class="modal-body">
                     <form (ngSubmit)="addTag()">
@@ -84,9 +88,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Ajouter une nouvelle carte</h5>
-                    <button type="button" class="close" (click)="closeAddCardModal()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" (click)="closeAddCardModal()"></button>
                 </div>
                 <div class="modal-body">
                     <form (ngSubmit)="addCard()">

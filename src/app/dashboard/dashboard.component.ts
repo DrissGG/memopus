@@ -3,6 +3,8 @@ import { CardService } from '../services/card.service';
 import { TagService } from '../services/tag.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   standalone: true,
@@ -30,7 +32,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private cardService: CardService,
-    private tagService: TagService
+    private tagService: TagService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -95,6 +98,12 @@ export class DashboardComponent implements OnInit {
     const userAnswer = this.userAnswers[card.id] || '';
     const isCorrect = userAnswer.trim().toLowerCase() === card.answer.trim().toLowerCase();
     alert(isCorrect ? 'Réponse correcte !' : 'Réponse incorrecte, essayez encore.');
+  }
+  // Méthode pour déconnecter l'utilisateur
+  logout() {
+    // Logique de déconnexion ici (ex: supprimer les tokens de session)
+    // Redirige vers la page de connexion
+    this.router.navigate(['/']);
   }
 
   openAddTagModal() {
