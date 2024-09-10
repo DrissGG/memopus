@@ -142,7 +142,7 @@ export class DashboardComponent implements OnInit {
         question: this.newCardQuestion,
         answer: this.newCardAnswer,
         column: this.currentColumnId,
-        tag: Number(this.newCardTagId) // Associe le tag sélectionné à la nouvelle carte
+        tag: this.newCardTagId // Associe le tag sélectionné à la nouvelle carte
       };
       console.log(newCard);
       this.cardService.addCard(newCard).subscribe((addedCard: any) => {
