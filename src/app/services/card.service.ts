@@ -23,4 +23,9 @@ export class CardService {
     addCard(card: any): Observable<any> {
         return this.http.post<any>(this.apiUrl, card);
     }
+
+    // Méthode pour mettre à jour une carte
+    updateCard(cardId: number, cardData: any): Observable<any> {
+        return this.http.put(`${this.apiUrl}/${cardId}`, cardData);
+    }
 }

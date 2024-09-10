@@ -4,6 +4,7 @@ import { TagService } from '../services/tag.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminService } from '../admin.service';
 
 
 @Component({
@@ -28,13 +29,100 @@ export class DashboardComponent implements OnInit {
   currentColumnId: number | null = null; // Stocke l'ID de la colonne où la carte sera ajoutée
   newCardTagId: number | null = null; // Tag sélectionné pour la nouvelle carte
 
-
+  isAdmin = false; // Variable pour stocker l'état de l'admin localement
 
   constructor(
     private cardService: CardService,
     private tagService: TagService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private adminService: AdminService
+  ) {
+    // S'abonner aux changements de l'état admin
+    this.adminService.isAdmin$.subscribe(isAdmin => {
+      this.isAdmin = isAdmin;
+    })
+  }
+
+  toggleAdminMode() {
+    if (this.isAdmin) {
+      this.adminService.disableAdminMode();
+    } else {
+      this.adminService.enableAdminMode();
+    }
+  }
+
+  // Variables pour le modal d'édition de tag
+  isEditTagModalOpen = false;
+  tagToEdit: any = null;
+  editedTagLabel: string = '';
+
+  // Variables pour le modal d'édition de carte
+  isEditCardModalOpen = false;
+  cardToEdit: any = null;
+  editedCardQuestion: string = '';
+  editedCardAnswer: string = '';
+  editedCardTagId: number | null = null;
+
+
+  // Méthode pour ouvrir le modal d'édition de tag
+  openEditTagModal(tag: any) {
+    this.tagToEdit = tag;
+    this.editedTagLabel = tag.label;
+    this.isEditTagModalOpen = true;
+  }
+
+  // Méthode pour fermer le modal d'édition de tag
+  closeEditTagModal() {
+    this.isEditTagModalOpen = false;
+    this.tagToEdit = null;
+  }
+
+  // Méthode pour enregistrer les modifications du tag
+  saveTagEdits() {
+    if (this.tagToEdit) {
+      this.tagService.updateTag(this.tagToEdit.id, { label: this.editedTagLabel }).subscribe(() => {
+        this.tagToEdit.label = this.editedTagLabel;
+        this.closeEditTagModal();
+      });
+    }
+  }
+
+  // Méthode pour ouvrir le modal d'édition de carte
+  openEditCardModal(card: any, columnId: number) {
+    this.cardToEdit = card;
+    this.currentColumnId = columnId;
+    this.editedCardQuestion = card.question;
+    this.editedCardAnswer = card.answer;
+    this.editedCardTagId = card.tag;
+    this.isEditCardModalOpen = true;
+  }
+
+  // Méthode pour fermer le modal d'édition de carte
+  closeEditCardModal() {
+    this.isEditCardModalOpen = false;
+    this.cardToEdit = null;
+  }
+
+  // Méthode pour enregistrer les modifications de la carte
+  saveCardEdits() {
+    if (this.cardToEdit) {
+      const updatedCard = {
+        question: this.editedCardQuestion,
+        answer: this.editedCardAnswer,
+        tag: this.editedCardTagId,
+        column: this.currentColumnId
+
+      };
+      console.log(updatedCard)
+      this.cardService.updateCard(this.cardToEdit.id, updatedCard).subscribe(() => {
+        this.cardToEdit.question = this.editedCardQuestion;
+        this.cardToEdit.answer = this.editedCardAnswer;
+        this.cardToEdit.tag = this.editedCardTagId;
+        this.cardToEdit.column = this.currentColumnId;
+        this.closeEditCardModal();
+      });
+    }
+  }
 
   ngOnInit() {
     this.loadCards();
