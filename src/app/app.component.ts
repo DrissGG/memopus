@@ -5,7 +5,8 @@ import { routes } from './app.routes';
 @Component({
   standalone: true,
   selector: 'app-root',
-  template: '<router-outlet></router-outlet>',
+  //template: '<router-outlet></router-outlet>',
+  templateUrl: "./app.component.html",
   imports: [RouterModule],
 })
 export class AppComponent {
