@@ -13,17 +13,26 @@ export class AdminService {
 
   constructor() { }
 
-  // Méthode pour activer le mode administrateur
+  /**
+   * Active le mode administrateur.
+   * Met à jour l'état du BehaviorSubject pour indiquer que l'utilisateur est un administrateur.
+   */
   enableAdminMode() {
     this.isAdminSubject.next(true);
   }
 
-  // Méthode pour désactiver le mode administrateur
+  /**
+   * Désactive le mode administrateur.
+   * Met à jour l'état du BehaviorSubject pour indiquer que l'utilisateur n'est pas un administrateur.
+   */
   disableAdminMode() {
     this.isAdminSubject.next(false);
   }
 
-  // Méthode pour récupérer l'état actuel du mode administrateur
+  /**
+   * Récupère l'état actuel du mode administrateur.
+   * @returns {boolean} - Retourne true si le mode administrateur est activé, sinon false.
+   */
   isAdmin(): boolean {
     return this.isAdminSubject.value;
   }

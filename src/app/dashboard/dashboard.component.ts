@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from '../admin.service';
 
-
 @Component({
   standalone: true,
   selector: 'app-dashboard',
@@ -43,6 +42,10 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  /** 
+   * Bascule le mode administrateur
+   * @returns {void}
+   */
   toggleAdminMode() {
     if (this.isAdmin) {
       this.adminService.disableAdminMode();
@@ -63,21 +66,30 @@ export class DashboardComponent implements OnInit {
   editedCardAnswer: string = '';
   editedCardTagId: number | null = null;
 
-
-  // Méthode pour ouvrir le modal d'édition de tag
+  /** 
+   * Ouvre le modal d'édition de tag
+   * @param {any} tag - Tag à éditer
+   * @returns {void}
+   */
   openEditTagModal(tag: any) {
     this.tagToEdit = tag;
     this.editedTagLabel = tag.label;
     this.isEditTagModalOpen = true;
   }
 
-  // Méthode pour fermer le modal d'édition de tag
+  /** 
+   * Ferme le modal d'édition de tag
+   * @returns {void}
+   */
   closeEditTagModal() {
     this.isEditTagModalOpen = false;
     this.tagToEdit = null;
   }
 
-  // Méthode pour enregistrer les modifications du tag
+  /** 
+   * Enregistre les modifications du tag
+   * @returns {void}
+   */
   saveTagEdits() {
     if (this.tagToEdit) {
       this.tagService.updateTag(this.tagToEdit.id, { label: this.editedTagLabel }).subscribe(() => {
@@ -87,7 +99,12 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // Méthode pour ouvrir le modal d'édition de carte
+  /** 
+   * Ouvre le modal d'édition de carte
+   * @param {any} card - Carte à éditer
+   * @param {number} columnId - ID de la colonne
+   * @returns {void}
+   */
   openEditCardModal(card: any, columnId: number) {
     this.cardToEdit = card;
     this.currentColumnId = columnId;
@@ -97,13 +114,19 @@ export class DashboardComponent implements OnInit {
     this.isEditCardModalOpen = true;
   }
 
-  // Méthode pour fermer le modal d'édition de carte
+  /** 
+   * Ferme le modal d'édition de carte
+   * @returns {void}
+   */
   closeEditCardModal() {
     this.isEditCardModalOpen = false;
     this.cardToEdit = null;
   }
 
-  // Méthode pour enregistrer les modifications de la carte
+  /** 
+   * Enregistre les modifications de la carte
+   * @returns {void}
+   */
   saveCardEdits() {
     if (this.cardToEdit) {
       const updatedCard = {
@@ -111,7 +134,6 @@ export class DashboardComponent implements OnInit {
         answer: this.editedCardAnswer,
         tag: this.editedCardTagId,
         column: this.currentColumnId
-
       };
       console.log(updatedCard)
       this.cardService.updateCard(this.cardToEdit.id, updatedCard).subscribe(() => {
@@ -124,24 +146,40 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  /** 
+   * Initialisation du composant
+   * @returns {void}
+   */
   ngOnInit() {
     this.loadCards();
     this.loadTags();
     this.loadColumns(); // Charge les colonnes
   }
 
+  /** 
+   * Charge les cartes depuis le service
+   * @returns {void}
+   */
   loadCards() {
     this.cardService.getCards().subscribe((data: any[]) => {
       this.cards = data;
     });
   }
 
+  /** 
+   * Charge les tags depuis le service
+   * @returns {void}
+   */
   loadTags() {
     this.tagService.getTags().subscribe((data: any[]) => {
       this.tags = data;
     });
   }
 
+  /** 
+   * Charge les colonnes (statique pour l'instant)
+   * @returns {void}
+   */
   loadColumns() {
     // Charger les colonnes à partir d'un service ou d'une source de données
     this.columns = [
@@ -151,6 +189,11 @@ export class DashboardComponent implements OnInit {
     ];
   }
 
+  /** 
+   * Filtre les cartes en fonction du tag sélectionné
+   * @param {number | null} tagId - ID du tag sélectionné ou null pour afficher toutes les cartes
+   * @returns {void}
+   */
   filterByTag(tagId: number | null) {
     this.selectedTag = tagId;
     this.cardService.getCards().subscribe((data: any[]) => {
@@ -160,10 +203,20 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  /** 
+   * Bascule l'affichage de la réponse de la carte
+   * @param {any} card - Carte dont l'affichage de la réponse doit être basculé
+   * @returns {void}
+   */
   toggleAnswer(card: any) {
     card.showAnswer = !card.showAnswer;
   }
 
+  /** 
+   * Déplace la carte vers la colonne de gauche
+   * @param {any} card - Carte à déplacer
+   * @returns {void}
+   */
   moveCardLeft(card: any) {
     const currentColumnIndex = card.column;
     const newColumnIndex = currentColumnIndex > 1 ? currentColumnIndex - 1 : this.columns.length;
@@ -171,6 +224,11 @@ export class DashboardComponent implements OnInit {
     this.updateCardColumn(card);
   }
 
+  /** 
+   * Déplace la carte vers la colonne de droite
+   * @param {any} card - Carte à déplacer
+   * @returns {void}
+   */
   moveCardRight(card: any) {
     const currentColumnIndex = card.column;
     const newColumnIndex = (currentColumnIndex % this.columns.length) + 1;
@@ -178,35 +236,66 @@ export class DashboardComponent implements OnInit {
     this.updateCardColumn(card);
   }
 
+  /** 
+   * Met à jour la colonne d'une carte
+   * @param {any} card - Carte à mettre à jour
+   * @returns {void}
+   */
   updateCardColumn(card: any) {
     this.cardService.updateCard(card.id, { column: card.column }).subscribe(() => {
     });
   }
 
+  /** 
+   * Récupère les cartes pour une colonne donnée
+   * @param {number} columnId - ID de la colonne
+   * @returns {any[]} Liste des cartes pour la colonne
+   */
   getCardsByColumn(columnId: number) {
     return this.cards.filter(card => card.column === columnId);
   }
 
+  /** 
+   * Soumet la réponse de l'utilisateur pour une carte
+   * @param {any} card - Carte pour laquelle la réponse est soumise
+   * @returns {void}
+   */
   submitAnswer(card: any) {
     const userAnswer = this.userAnswers[card.id] || '';
     const isCorrect = userAnswer.trim().toLowerCase() === card.answer.trim().toLowerCase();
     alert(isCorrect ? 'Réponse correcte !' : 'Réponse incorrecte, essayez encore.');
   }
-  // Méthode pour déconnecter l'utilisateur
+
+  /** 
+   * Déconnecte l'utilisateur et le redirige vers la page de connexion
+   * @returns {void}
+   */
   logout() {
     // Logique de déconnexion ici (ex: supprimer les tokens de session)
     // Redirige vers la page de connexion
     this.router.navigate(['/']);
   }
 
+  /** 
+   * Ouvre le modal d'ajout de tag
+   * @returns {void}
+   */
   openAddTagModal() {
     this.isModalOpen = true;
   }
 
+  /** 
+   * Ferme le modal d'ajout de tag
+   * @returns {void}
+   */
   closeAddTagModal() {
     this.isModalOpen = false;
   }
 
+  /** 
+   * Ajoute un nouveau tag
+   * @returns {void}
+   */
   addTag() {
     if (this.newTagLabel.trim()) {
       this.tagService.addTag({ label: this.newTagLabel }).subscribe((newTag: any) => {
@@ -217,18 +306,30 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  /** 
+   * Ouvre le modal d'ajout de carte
+   * @param {number} columnId - ID de la colonne où la carte sera ajoutée
+   * @returns {void}
+   */
   openAddCardModal(columnId: number) {
     this.currentColumnId = columnId;
     this.isAddCardModalOpen = true; // Ouvre le modal
   }
 
+  /** 
+   * Ferme le modal d'ajout de carte
+   * @returns {void}
+   */
   closeAddCardModal() {
     this.isAddCardModalOpen = false; // Ferme le modal
     this.newCardQuestion = ''; // Réinitialise la question de la carte
     this.newCardAnswer = ''; // Réinitialise la réponse de la carte
   }
 
-  // Ajoute une nouvelle carte
+  /** 
+   * Ajoute une nouvelle carte
+   * @returns {void}
+   */
   addCard() {
     if (this.newCardQuestion.trim() && this.newCardAnswer.trim() && this.newCardTagId !== null) {
       const newCard = {

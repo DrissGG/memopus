@@ -1,4 +1,4 @@
-// src/app/app.module.ts
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'; // Importer HttpClientModule
@@ -15,8 +15,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
     ],
     imports: [
         BrowserModule,
-        HttpClientModule, // Ajouter HttpClientModule ici
-        // Autres modules nécessaires
+        HttpClientModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

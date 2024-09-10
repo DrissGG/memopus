@@ -86,9 +86,9 @@
     },
     {
       "id": "120d",
-      "question": "La capitale du Maroc",
+      "question": "La capitale du Maroc ?",
       "answer": "Rabat",
-      "column": 2,
+      "column": 1,
       "tag": "3"
     },
     {
@@ -104,6 +104,13 @@
       "answer": "javascript",
       "column": 3,
       "tag": "1"
+    },
+    {
+      "id": "f13c",
+      "question": "La capitale du France ?",
+      "answer": "paris",
+      "column": 3,
+      "tag": "3"
     }
   ],
   "tags": [
