@@ -8,4 +8,6 @@ import { routes } from './app.routes';
   template: '<router-outlet></router-outlet>',
   imports: [RouterModule],
 })
-export class AppComponent { }
+export class AppComponent {
+  title: String = "memopus";
+}
