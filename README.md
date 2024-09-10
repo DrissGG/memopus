@@ -1,27 +1,56 @@
-# Memopus
+Installation
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
+Avant de pouvoir exécuter l'application, assurez-vous que vous avez Node.js et Angular CLI installés sur votre machine. Vous pouvez installer ces outils en suivant les instructions sur leurs sites respectifs :
 
-## Development server
+- [Node.js](https://nodejs.org/)
+- [Angular CLI](https://angular.io/cli)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Étapes d'installation
 
-## Code scaffolding
+1. **Clonez le dépôt** :
+   ```bash
+   git clone https://github.com/DrissGG/memopus.git
+   cd memopus/memopus
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+   ```
 
-## Build
+</code></div></div></pre>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. **Installez les dépendances** : Dans le répertoire du projet, exécutez :
+   `npm install`</div></div></pre>
 
-## Running unit tests
+## Lancer l'application
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Pour lancer l'application en mode développement, suivez ces étapes :
 
-## Running end-to-end tests
+1. **Démarrez le serveur de développement** :
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+   <code class="!whitespace-pre hljs language-bash">``ng serve``
+   </code></div></div></pre>
+2. **Ouvrez votre navigateur et accédez à** :
 
-## Further help
+   ``http://localhost:4200``
+   </code></div></div></pre>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+   Vous devriez voir l'application en fonctionnement. Le serveur de développement surveillera les changements de fichiers et rechargera automatiquement l'application.
+
+## Points clés techniques
+
+* **Architecture de l'application** :
+  * L'application est construite avec [Angular](https://angular.io/), un framework populaire pour les applications web modernes.
+  * Utilisation de **Components** pour structurer l'interface utilisateur.
+  * Utilisation des **Services** pour la gestion des données et la communication avec les API.
+* **Services** :
+  * **CardService** : Gère les opérations liées aux cartes, telles que la récupération, l'ajout, et la mise à jour des cartes.
+  * **TagService** : Gère les opérations liées aux tags, y compris la récupération, l'ajout, la suppression et la mise à jour des tags.
+  * **AdminService** : Gère l'état du mode administrateur avec un `BehaviorSubject` pour permettre aux composants de réagir aux changements de l'état.
+* **API** :
+  * Les données sont récupérées et envoyées via des appels HTTP à une API REST locale (`http://localhost:3000`).
+* **State Management** :
+  * **BehaviorSubject** de RxJS est utilisé dans le `AdminService` pour gérer et diffuser l'état du mode administrateur à travers les composants.
+* **Modals** :
+  * Des modals sont utilisés pour ajouter ou éditer des cartes et des tags. L'état de ces modals est contrôlé par des variables booléennes dans le composant `DashboardComponent`.
+* **Routing** :
+  * L'application utilise Angular Router pour la navigation entre les composants `LoginComponent` et `DashboardComponent`.
+* **Responsiveness** :
+  * L'application est conçue pour être réactive et s'adapte aux différentes tailles d'écran en utilisant des directives et des styles CSS appropriés.

@@ -93,9 +93,9 @@
     },
     {
       "id": "f98c",
-      "question": "2+2 = ?",
+      "question": "2+2 = ???",
       "answer": "4",
-      "column": 1,
+      "column": 2,
       "tag": "2"
     },
     {
@@ -127,8 +127,8 @@
       "label": "Géographie"
     },
     {
-      "id": "4",
-      "label": "Culture Générale"
+      "label": "Culture Généralee",
+      "id": "4"
     },
     {
       "id": "5",
