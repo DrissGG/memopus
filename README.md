@@ -35,11 +35,9 @@ Avant de pouvoir exécuter l'application, assurez-vous que vous avez  Angular CL
 
 Pour lancer l'application en mode développement, suivez ces étapes :
 
-
 **Exécutez `json-server` pour lancer le serveur local** :
 
 `json-server --watch db.json --port 3000`</code></div></div></pre>
-
 
 1. **Démarrez le serveur de développement** :
 
@@ -63,7 +61,7 @@ Pour lancer l'application en mode développement, suivez ces étapes :
   * **TagService** : Gère les opérations liées aux tags, y compris la récupération, l'ajout, la suppression et la mise à jour des tags.
   * **AdminService** : Gère l'état du mode administrateur avec un `BehaviorSubject` pour permettre aux composants de réagir aux changements de l'état.
 * **API** :
-  * Les données sont récupérées et envoyées via des appels HTTP à une API REST locale (`http://localhost:3000`).
+  * Les données sont récupérées et envoyées via des appels HTTP à une API REST locale simulée par `json-server` à l'adresse [http://localhost:3000](http://localhost:3000).
 * **State Management** :
   * **BehaviorSubject** de RxJS est utilisé dans le `AdminService` pour gérer et diffuser l'état du mode administrateur à travers les composants.
 * **Modals** :
