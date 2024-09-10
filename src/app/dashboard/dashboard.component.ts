@@ -168,14 +168,19 @@ export class DashboardComponent implements OnInit {
     const currentColumnIndex = card.column;
     const newColumnIndex = currentColumnIndex > 1 ? currentColumnIndex - 1 : this.columns.length;
     card.column = newColumnIndex;
-    // Vous pouvez également mettre à jour la carte sur le serveur ici
+    this.updateCardColumn(card);
   }
 
   moveCardRight(card: any) {
     const currentColumnIndex = card.column;
     const newColumnIndex = (currentColumnIndex % this.columns.length) + 1;
     card.column = newColumnIndex;
-    // Vous pouvez également mettre à jour la carte sur le serveur ici
+    this.updateCardColumn(card);
+  }
+
+  updateCardColumn(card: any) {
+    this.cardService.updateCard(card.id, { column: card.column }).subscribe(() => {
+    });
   }
 
   getCardsByColumn(columnId: number) {

@@ -22,67 +22,6 @@
       "id": "3"
     },
     {
-      "id": "4",
-      "question": "Quel est l’élément chimique avec le symbole 'O' ?",
-      "answer": "Oxygène",
-      "description": "Gaz essentiel à la respiration.",
-      "tag": "5",
-      "column": 2
-    },
-    {
-      "id": "5",
-      "question": "Quelle est la capitale de la France ?",
-      "answer": "Paris",
-      "description": "Ville lumière et capitale française.",
-      "tag": "3",
-      "column": 3
-    },
-    {
-      "id": "6",
-      "question": "Quel est l’animal qui dit 'meuh' ?",
-      "answer": "Vache",
-      "description": "Animal d’élevage connu pour son lait.",
-      "tag": "4",
-      "column": 3
-    },
-    {
-      "question": "Quel est le nombre de continents sur Terre ?,zslqdl",
-      "answer": "Sept;,s,lS",
-      "tag": "4",
-      "id": "7"
-    },
-    {
-      "id": "8",
-      "question": "Quelle est la langue officielle du Japon ?",
-      "answer": "Japonais",
-      "description": "Langue parlée au Japon.",
-      "tag": "4",
-      "column": 1
-    },
-    {
-      "id": "9",
-      "question": "Quel fruit est connu pour sa couleur rouge et ses graines à l'intérieur ?",
-      "answer": "Fraise",
-      "description": "Fruit rouge avec des petites graines.",
-      "tag": "4",
-      "column": 2
-    },
-    {
-      "id": "10",
-      "question": "Quel est l’organe principal de la respiration chez l'homme ?",
-      "answer": "Poumons",
-      "description": "Organe essentiel pour respirer.",
-      "tag": "5",
-      "column": 2
-    },
-    {
-      "id": "70ab",
-      "question": "Combien de continents y a-t-il?",
-      "answer": "7",
-      "column": 1,
-      "tag": "3"
-    },
-    {
       "id": "11",
       "question": "Quel est le langage de programmation principalement utilisé pour le développement web côté client?",
       "answer": "JavaScript",
@@ -95,13 +34,6 @@
       "tag": "1",
       "column": "null",
       "id": "12"
-    },
-    {
-      "id": "13",
-      "question": "Quel est le protocole principal utilisé pour transférer des pages web?",
-      "answer": "HTTP",
-      "column": 3,
-      "tag": "1"
     },
     {
       "question": "Combien de coté a un carrésddsd",
@@ -118,25 +50,11 @@
       "id": "4816"
     },
     {
-      "id": "064c",
-      "question": "SD?",
-      "answer": "SQQ.?",
-      "column": 2,
-      "tag": "3"
-    },
-    {
       "id": "c617",
-      "question": "KQ",
+      "question": "KQ,.S.S.S",
       "answer": "SSSS",
       "column": 2,
       "tag": "b6bf"
-    },
-    {
-      "question": "Quel joueur a gagné bcp de ballon d'or ???",
-      "answer": "messi",
-      "tag": "7db3",
-      "column": 2,
-      "id": "f83f"
     },
     {
       "id": "5206",
@@ -167,18 +85,25 @@
       "id": "3b92"
     },
     {
-      "question": "2+2 = ?",
-      "answer": "33",
-      "tag": "2",
-      "column": "null",
-      "id": "51e6"
+      "id": "120d",
+      "question": "La capitale du Maroc",
+      "answer": "Rabat",
+      "column": 2,
+      "tag": "3"
     },
     {
+      "id": "f98c",
       "question": "2+2 = ?",
       "answer": "4",
-      "tag": "2",
       "column": 1,
-      "id": "123d"
+      "tag": "2"
+    },
+    {
+      "id": "28ad",
+      "question": "Quel langage a l'extension .js ?",
+      "answer": "javascript",
+      "column": 3,
+      "tag": "1"
     }
   ],
   "tags": [
