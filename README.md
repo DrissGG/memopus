@@ -1,6 +1,6 @@
 Installation
 
-Avant de pouvoir exécuter l'application, assurez-vous que vous avez Node.js et Angular CLI installés sur votre machine. Vous pouvez installer ces outils en suivant les instructions sur leurs sites respectifs :
+Avant de pouvoir exécuter l'application, assurez-vous que vous avez  Angular CLI installés sur votre machine. Vous pouvez installer ces outils en suivant les instructions sur leurs sites respectifs :
 
 - [Node.js](https://nodejs.org/)
 - [Angular CLI](https://angular.io/cli)
@@ -10,18 +10,36 @@ Avant de pouvoir exécuter l'application, assurez-vous que vous avez Node.js et 
 1. **Clonez le dépôt** :
    ```bash
    git clone https://github.com/DrissGG/memopus.git
-   cd memopus/memopus
-
+   cd memopus
    ```
 
 </code></div></div></pre>
 
 2. **Installez les dépendances** : Dans le répertoire du projet, exécutez :
-   `npm install`</div></div></pre>
+   `npm install`
+3. Installez json-server globalement : json-server est utilisé pour simuler une API REST locale. Vous pouvez l'installer globalement avec la commande :
+
+   bash
+   Copier le code
+   ``npm install -g json-server``</div></div>
+4. **Installez `bootstrap`**  : Pour ajouter Bootstrap à votre projet Angular, exécutez :
+
+   ``npm install bootstrap``
+   </code></div></div></pre>
+
+   Assurez-vous d'ajouter Bootstrap dans le fichier `angular.json` sous `styles` :
+
+   `"styles": [ "node_modules/bootstrap/dist/css/bootstrap.min.css", "src/styles.css" ]`</code></div></div></pre>
 
 ## Lancer l'application
 
 Pour lancer l'application en mode développement, suivez ces étapes :
+
+
+**Exécutez `json-server` pour lancer le serveur local** :
+
+`json-server --watch db.json --port 3000`</code></div></div></pre>
+
 
 1. **Démarrez le serveur de développement** :
 
